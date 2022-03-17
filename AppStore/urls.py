@@ -28,5 +28,5 @@ urlpatterns = [
     path('Customers', app.views.Customers, name='Customers'),
     path('Listings', app.views.Listings, name='Listings'),
     path('Unavailable', app.views.Unavailable, name='Unavailable'),
-    path('Rental', app.views.Rental, name='Rental'),
+    path('Rentals', app.views.Rentals, name='Rentals'),
 ]
