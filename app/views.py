@@ -91,15 +91,42 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
-def admin(request):
+def Customers(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers ORDER BY customerid")
+        cursor.execute("SELECT * FROM customers ORDER BY email")
         customers = cursor.fetchall()
 
     result_dict = {'records': customers}
     
-    return render(request,'app/admin.html',result_dict)
+    return render(request,'app/Customers.html',result_dict)
 
+def Listings(request):
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM listings ORDER BY owner")
+        customers = cursor.fetchall()
 
+    result_dict = {'records': customers}
+    
+    return render(request,'app/Customers.html',result_dict)
 
+def Unavailable(request):
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM unavailable ORDER BY car_vin")
+        customers = cursor.fetchall()
+
+    result_dict = {'records': customers}
+    
+    return render(request,'app/Customers.html',result_dict)
+
+def Rental(request):
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM rentals ORDER BY car_vin")
+        customers = cursor.fetchall()
+
+    result_dict = {'records': customers}
+    
+    return render(request,'app/Customers.html',result_dict)
