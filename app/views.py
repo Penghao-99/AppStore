@@ -109,7 +109,7 @@ def Listings(request):
 
     result_dict = {'records': customers}
     
-    return render(request,'app/Customers.html',result_dict)
+    return render(request,'app/Listings.html',result_dict)
 
 def Unavailable(request):
     ## Use raw query to get all objects
@@ -119,9 +119,9 @@ def Unavailable(request):
 
     result_dict = {'records': customers}
     
-    return render(request,'app/Customers.html',result_dict)
+    return render(request,'app/Unavailable.html',result_dict)
 
-def Rental(request):
+def Rentals(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM rentals ORDER BY car_vin")
@@ -129,4 +129,4 @@ def Rental(request):
 
     result_dict = {'records': customers}
     
-    return render(request,'app/Customers.html',result_dict)
+    return render(request,'app/Rentals.html',result_dict)
