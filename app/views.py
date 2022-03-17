@@ -90,3 +90,16 @@ def edit(request, id):
     context["status"] = status
  
     return render(request, "app/edit.html", context)
+
+def admin(request):
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM customers ORDER BY customerid")
+        customers = cursor.fetchall()
+
+    result_dict = {'records': customers}
+    
+    return render(request,'app/admin.html',result_dict)
+
+
+
