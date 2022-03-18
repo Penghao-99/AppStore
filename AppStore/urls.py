@@ -28,6 +28,7 @@ urlpatterns = [
     path('edit/<str:id>', app.views.edit, name='edit'),
     path('Listings', app.views.Listings, name='Listings'),
     path('Listings/view/<str:id>', app.views.view_Listings, name='view_Listings'), #the html files button href will refer to path(this,X,X)
+    path('Listings/edit/<str:id>', app.views.edit_Listings, name='edit_Listings'),
     path('Unavailable', app.views.Unavailable, name='Unavailable'),
     path('Rentals', app.views.Rentals, name='Rentals'),
 ]
