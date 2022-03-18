@@ -3,7 +3,7 @@
 <body>
     <h2>Customers database</h2>
     <img src="{% static 'app/images/Customer.png' %}" width="10%"   alt="Customer logo"/><br/>
-    <a href="add">New customer</a>
+    <a href="add_newcustomer">New customer</a>
     <br>
     <br>
     </div>
@@ -38,7 +38,6 @@
             <td> {{ cust.4 }} </td>
             <td> {{ cust.5 }} </td>
             <td> {{ cust.6 }} </td>
-            <td> {{ cust.7 }} </td>
             <td>
                 <a href="view/{{cust.6}}"><button>View</button></a> | 
                 <a href="edit/{{cust.6}}"><button>Edit</button></a>
