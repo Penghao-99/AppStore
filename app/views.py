@@ -111,7 +111,7 @@ def edit_Listing(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers WHERE email = %s", [id])
+        cursor.execute("SELECT * FROM listings WHERE owner = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
