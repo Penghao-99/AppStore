@@ -3,6 +3,19 @@
 <body>
     <h2>Customers in the App Store</h2>
     <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+    <a href="add">New customer</a>
+    <br>
+    <br>
+    </div>
+
+    <div class="home">
+      <button class="Customers"><a href="Customers">Customers</a></button>
+      <button class="Listings"><a href="Listings">Listings</a></button>
+      <button class="Unavailable"><a href="Unavailable">Unavailable</a></button>
+      <button class="Rentals"><a href="Rentals">Rentals</a></button>
+    </div>
+    </div>
+    <br/><br/>
     <br>
     <br>
     <br/><br/>
@@ -14,7 +27,8 @@
             <th>Date of Birth</th>
             <th>Password</th>
             <th>ConfirmPassword</th>
-            <th>email</th>Listin
+            <th>email</th>
+            
         </thead>
         {% for cust in records %}
         <tr>
