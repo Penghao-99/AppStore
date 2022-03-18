@@ -23,7 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.Customers, name='Customers'),
     path('add', app.views.add, name='add'),
-    
+    path('add_newlisting', app.views.add_newlisting, name='add_newlisting'),
+    path('add_newunavailable', app.views.add_newunavailable, name='add_newunavailable'),
+    path('add_newrental', app.views.add_newrental, name='add_newrental'),
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
     path('Listings', app.views.Listings, name='Listings'),
