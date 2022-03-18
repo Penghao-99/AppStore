@@ -34,7 +34,7 @@ insert into unavailable (car_vin, owner, unavailable) values ('WAUSFAFL2BA782648
 
 insert into rentals (owner,renter,car_vin,pick_up,drop_off,rental_fee)
 values
-('awarry9@statcounter.com','ksprulls4@fda.gov','JN8AZ2KRXBT327366','17/09/2022','17/09/2022',62219),
-('sbompass8@cnet.com','ksprulls4@fda.gov','JN8AS1MU7AM855309','17/09/2022','17/09/2022',35895),
-('jgailor7@rediff.com','ksprulls4@fda.gov','5N1AR2MM8FC452719','17/09/2022','17/09/2022',35423)
+('awarry9@statcounter.com','ksprulls4@fda.gov','JN8AZ2KRXBT327366','09/17/2022','09/17/2022',62219),
+('sbompass8@cnet.com','ksprulls4@fda.gov','JN8AS1MU7AM855309','09/17/2022','09/17/2022',35895),
+('jgailor7@rediff.com','ksprulls4@fda.gov','5N1AR2MM8FC452719','09/17/2022','09/17/2022',35423)
 
