@@ -88,6 +88,85 @@ def add(request):
  
     return render(request, "app/add.html", context)
 
+def add_newlisting(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM listings WHERE owner = %s", [request.POST['owner']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO customers VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        , [request.POST['car_vin'], request.POST['carmake'], request.POST['model'],
+                           request.POST['year'] , request.POST['mileage'], request.POST['rate'], request.POST['owner'] ])
+                return redirect('Listings')    #was return redirect('index')
+            else:
+                status = 'Listing with owner %s and model %s already exists' % (request.POST['owner'],request.POST['model'])
+
+
+    context['status'] = status
+ 
+    return render(request, "app/add_Listing.html", context)
+
+def add_newunavailable(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM unavailable WHERE car_vin = %s", [request.POST['car_vin']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO car_vin VALUES (%s, %s, %s)"
+                        , [request.POST['car_vin'], request.POST['owner'], request.POST['unavailable'] ])
+                return redirect('Unavailable')    #was return redirect('index')
+            else:
+                status = 'Unavailablity of owner %s and date %s already exists' % (request.POST['owner'],request.POST['unavailable'])
+
+
+    context['status'] = status
+ 
+    return render(request, "app/add_Unavailable.html", context)
+
+
+def add_newrental(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [request.POST['car_vin']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO car_vin VALUES (%s, %s, %s, %s, %s, %s )"
+                        , [request.POST['owner'], request.POST['renter'], request.POST['car_vin'],
+                          request.POST['pick_up'], request.POST['drop_off'], request.POST['rental_fee']])
+                return redirect('Rental')    #was return redirect('index')
+            else:
+                status = 'Rental data of owner %s and renter %s and car VIN %s already exists' % (request.POST['owner'],request.POST['renter'],
+                                                                                                 request.POST['car_vin'])
+
+
+    context['status'] = status
+ 
+    return render(request, "app/add_Rental.html", context)
+
 # Create your views here.
 def edit(request, id):
     """Shows the main page"""
