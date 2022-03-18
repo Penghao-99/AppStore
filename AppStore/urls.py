@@ -33,8 +33,8 @@ urlpatterns = [
     path('Listings/edit/<str:id>', app.views.edit_Listings, name='edit_Listings'),
     path('Unavailable', app.views.Unavailable, name='Unavailable'),
     path('Unavailable/view/<str:id>', app.views.view_Unavailable, name='view_Unavailable'), 
-    path('Unavailable/edit/', app.views.edit_Unavailable, name='edit_Unavailable'),
+    path('Unavailable/edit/<str:id>', app.views.edit_Unavailable, name='edit_Unavailable'),
     path('Rentals', app.views.Rentals, name='Rentals'),
     path('Rentals/view/<str:id>', app.views.view_Rentals, name='view_Rentals'), 
-    path('Rentals/edit/<str:id>', app.views.edit_Rentals, name='edit_Rentals'),
+    path('Rentals/edit/', app.views.edit_Rentals, name='edit_Rentals'),
 ]
