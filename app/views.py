@@ -255,7 +255,7 @@ def edit_Unavailable(request, id):
 
     context["obj"] = obj
     context["status"] = status
-    return render(request, "app/edit_Unavailable.html", context) ########################### TO-DO
+    return render(request, "app/edit_Unavailable.html", context)
 
 def edit_Rentals(request, id):
     # dictionary for initial data with
@@ -282,7 +282,7 @@ def edit_Rentals(request, id):
 
     context["obj"] = obj
     context["status"] = status
-    return render(request, "app/edit_Rentals.html", context) ############################ TO-DO
+    return render(request, "app/edit_Rentals.html", context)
 
 def Listings(request):
     ## Use raw query to get all objects
