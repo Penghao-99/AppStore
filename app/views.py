@@ -32,6 +32,17 @@ def view(request, id):
 
     return render(request,'app/view.html',result_dict)
 
+def view_Listings(request, id):
+    """Shows the main page"""
+    
+    ## Use raw query to get a customer
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM listings WHERE owner = %s", [id])
+        customer = cursor.fetchone()
+    result_dict = {'cust': customer}
+
+    return render(request,'app/view_Listings.html',result_dict)
+
 # Create your views here.
 def add(request):
     """Shows the main page"""
