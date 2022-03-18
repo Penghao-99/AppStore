@@ -1,1 +1,46 @@
+{% load static %}
+<html>
+<body>
+    <h2>Rentals in the CarShare admin page</h2>
+    <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+    <a href="add">New Rental (but might need to create new function add_newrental)</a>
+    <br>
+    <br>
 
+    <br/><br/>
+    <br>
+    <br>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Owner</th>
+            <th>Renter</th>
+            <th>Car VIN</th>
+            <th>Pick-up date</th>
+            <th>Drop-off date</th>
+            <th>Rental Fee</th>
+            
+        </thead>
+        {% for cust in records %}
+        <tr>
+            <td> {{ cust.0 }} </td>
+            <td> {{ cust.1 }} </td>
+            <td> {{ cust.2 }} </td>
+            <td> {{ cust.3 }} </td>
+            <td> {{ cust.4 }} </td>
+            <td> {{ cust.5 }} </td>
+            <td>
+                <a href="Rentals/view/{{cust.6}}"><button>View Rentals</button></a> | 
+                <a href="Rentals/edit/{{cust.6}}"><button>Edit Rentals</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{cust.2}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{cust.2}}?');" type="submit" name="action" value="delete">Delete</button> 
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+     
+</body>
+</html>
