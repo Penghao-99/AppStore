@@ -102,7 +102,36 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
+def edit_Listing(request, id):
+     """Shows the main page"""
 
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+
+    # fetch the object related to passed id
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM customers WHERE email = %s", [id])
+        obj = cursor.fetchone()
+
+    status = ''
+    # save the data from the form
+
+    if request.POST:
+        ##TODO: date validation
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE customers SET car_vin = %s, carmake = %s, model = %s, year = %s, mileage = %s, rate = %s, owner = %s WHERE owner = %s"
+                    , [request.POST['car_vin'], request.POST['carmake'], request.POST['model'],
+                        request.POST['year'] , request.POST['mileage'], request.POST['rate'], request.POST['owner'], id ])
+            status = 'Listing edited successfully!'
+            cursor.execute("SELECT * FROM listings WHERE owner = %s", [id])
+            obj = cursor.fetchone()
+
+
+    context["obj"] = obj
+    context["status"] = status
+ 
+    return render(request, "app/edit_Listings.html", context)
 
 def Listings(request):
     ## Use raw query to get all objects
