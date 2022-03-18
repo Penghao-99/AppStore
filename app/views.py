@@ -102,8 +102,8 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
-def edit_Listing(request, id):
-     """Shows the main page"""
+def edit_Listings(request, id):
+    """Shows the main page"""
 
     # dictionary for initial data with
     # field names as keys
