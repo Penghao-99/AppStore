@@ -1,1 +1,30 @@
 
+<html>
+<body>
+  <h2>Edit {{obj6}}</h2>
+    <p style="color:red">{{ status|safe }}</p>
+
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_id_car_vin" class="control-group"> <label for="id_first_name" class="control-label requiredField">
+        First Name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="first_name" value="{{obj.0}}" maxlength="64" class="textinput textInput" required="" id="id_car_vin"> </div> </div> 
+      <div id="div_id_last_name" class="control-group"> <label for="id_last_name" class="control-label requiredField">
+        Last Name<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="last_name" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_carmake"> </div> </div> 
+      <div id="div_id_model" class="control-group"> <label for="id_username" class="control-label requiredField">
+        Username<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="username" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_model"> </div> </div> 
+      <div id="div_id_year" class="control-group"> <label for="id_dob" class="control-label requiredField">
+        Date of Birth<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="dob" value="{{obj.3|slugify}}" class="dateinput" required="" id="id_dob"> </div> </div> 
+      <div id="div_id_mileage" class="control-group"> <label for="id_password" class="control-label requiredField">
+        Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="password" value="{{obj.4|slugify}}" class="dateinput" required="" id="id_since"> </div> </div> 
+      <div id="div_id_rate" class="control-group"> <label for="id_confirmPassword" class="control-label requiredField">
+        Confirm Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="confirmPassword" value="{{obj.5}}" maxlength="16" class="textinput textInput" required="" id="id_rate"> </div> </div>
+      <div id="div_id_owner" class="control-group"> <label for="id_email" class="control-label requiredField">
+        Email<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="email" value="{{obj.6}}" maxlength="256" class="textinput textInput" required="" id="id_rate"> </div> </div>
+        <br>
+        <button type="submit" value="Update">Update</button>
+    </form>
+</body>
+</html>
