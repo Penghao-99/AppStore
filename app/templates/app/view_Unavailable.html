@@ -1,1 +1,25 @@
-
+<html>
+<body>
+    <h2>Details for Car VIN{{cust.0}}</h2>
+    <a href="/">Back to home</a>
+    <br/><br/>
+    <table style='text-align:left'>
+        <tr>
+            <th>Car VIN</th>
+            <td>:</td>
+            <td> {{ cust.0 }} </td>
+        </tr>
+        <tr>
+            <th>Owner</th>
+            <td>:</td>
+            <td> {{ cust.1 }} </td>
+        </tr>
+        <tr>
+            <th>Unavailable dates</th>
+            <td>:</td>
+            <td> {{ cust.2 }} </td>
+        </tr>
+        
+    </table>
+</body>
+</html>
