@@ -43,6 +43,24 @@ def view_Listings(request, id):
 
     return render(request,'app/view_Listings.html',result_dict)
 
+def view_Unavailable(request, id):
+    
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM unavailable WHERE car_vin = %s", [id])
+        car_vin = cursor.fetchone()
+    result_dict = {'cust': car_vin}
+    
+    return render(request,'app/view_Unavailable.html',result_dict)
+
+def view_Rentals(request, id):
+    
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [id])
+        car_vin = cursor.fetchone()
+    result_dict = {'cust': car_vin}
+    
+    return render(request,'app/view_Rentals.html',result_dict)
+
 # Create your views here.
 def add(request):
     """Shows the main page"""
@@ -132,6 +150,12 @@ def edit_Listings(request, id):
     context["status"] = status
  
     return render(request, "app/edit_Listings.html", context)
+
+def edit_Unavailable(request, id):
+    return render(request, "app/edit_Unavailable.html", context) ########################### TO-DO
+
+def edit_Rentals(request, id):
+    return render(request, "app/edit_Rentals.html", context) ############################ TO-DO
 
 def Listings(request):
     ## Use raw query to get all objects
