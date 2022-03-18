@@ -1,4 +1,3 @@
-
 <html>
 <body>
     <h2>Edit {{obj6}}</h2>
@@ -11,14 +10,18 @@
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
-        <div id="div_id_car_vin" class="control-group"> <label for="id_car_vin" class="control-label requiredField">
-        Car VIN<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="car_vin" value="{{obj.0}}" maxlength="64" class="textinput textInput" required="" id="id_car_vin"> </div> </div> 
-      <div id="div_id_owner" class="control-group"> <label for="id_owner" class="control-label requiredField">
-        Owner<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="owner" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_carmake"> </div> </div> 
-      <div id="div_id_unavailable_date" class="control-group"> <label for="id_unavailable_date" class="control-label requiredField">
-        Unavailable date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="unavailable_date" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_model"> </div> </div> 
-      <div id="div_id_year" class="control-group"> <label for="id_year" class="control-label requiredField">
-   
+        <div id="div_id_owner" class="control-group"> <label for="id_owner" class="control-label requiredField">
+        Owner<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="owner" value="{{obj.0}}" maxlength="64" class="textinput textInput" required="" id="id_car_vin"> </div> </div> 
+      <div id="div_id_renter" class="control-group"> <label for="id_renter" class="control-label requiredField">
+        Renter<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="renter" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_carmake"> </div> </div> 
+      <div id="div_id_car_vin" class="control-group"> <label for="id_car_vin" class="control-label requiredField">
+        Car VIN<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="car_vin" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_model"> </div> </div> 
+      <div id="div_id_pick_up" class="control-group"> <label for="id_pick_up" class="control-label requiredField">
+        Pick-up date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="pick_up" value="{{obj.3|slugify}}" class="dateinput" required="" id="id_dob"> </div> </div> 
+      <div id="div_id_drop_off" class="control-group"> <label for="id_drop_off" class="control-label requiredField">
+        Drop-off date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="drop_off" value="{{obj.4|slugify}}" class="dateinput" required="" id="id_since"> </div> </div> 
+      <div id="div_id_rental_fee" class="control-group"> <label for="id_rental_fee" class="control-label requiredField">
+        Rental Fee<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="rental_fee" value="{{obj.5}}" maxlength="16" class="textinput textInput" required="" id="id_rate"> </div> </div>
         <br>
         <button type="submit" value="Update">Update</button>
     </form>
