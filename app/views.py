@@ -62,7 +62,7 @@ def view_Rentals(request, id):
     return render(request,'app/view_Rentals.html',result_dict)
 
 # Create your views here.
-def add(request):
+def add(request): #can delete
     """Shows the main page"""
     context = {}
     status = ''
@@ -87,6 +87,32 @@ def add(request):
     context['status'] = status
  
     return render(request, "app/add.html", context)
+
+def add_newcustomer(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM customers WHERE email = %s", [request.POST['email']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO customers VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        , [request.POST['first_name'], request.POST['last_name'], request.POST['username'],
+                           request.POST['dob'] , request.POST['password'], request.POST['confirmPassword'], request.POST['email'] ])
+                return redirect('Customers')   
+            else:
+                status = 'Customer with email %s already exists' % (request.POST['email'])
+
+
+    context['status'] = status
+ 
+    return render(request, "app/add_Listing.html", context)
 
 def add_newlisting(request):
     """Shows the main page"""
@@ -168,7 +194,7 @@ def add_newrental(request):
     return render(request, "app/add_Rental.html", context)
 
 # Create your views here.
-def edit(request, id):
+def edit_Customers(request, id):
     """Shows the main page"""
 
     # dictionary for initial data with
@@ -197,7 +223,7 @@ def edit(request, id):
     context["obj"] = obj
     context["status"] = status
  
-    return render(request, "app/edit.html", context)
+    return render(request, "app/edit_Customers.html", context)
 
 def edit_Listings(request, id):
     """Shows the main page"""
