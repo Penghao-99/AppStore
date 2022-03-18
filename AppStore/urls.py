@@ -23,10 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.Customers, name='Customers'),
     path('add', app.views.add, name='add'),
+    
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
-
     path('Listings', app.views.Listings, name='Listings'),
+    path('Listings/view/<str:id>', app.views.view_Listings, name='view_Listings'),
     path('Unavailable', app.views.Unavailable, name='Unavailable'),
     path('Rentals', app.views.Rentals, name='Rentals'),
 ]
