@@ -23,11 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.Customers, name='Customers'),
     path('add', app.views.add, name='add'),
+    path('add_newcustomer', app.views.add_newcustomer, name='add_newcustomer'),
     path('add_newlisting', app.views.add_newlisting, name='add_newlisting'),
     path('add_newunavailable', app.views.add_newunavailable, name='add_newunavailable'),
     path('add_newrental', app.views.add_newrental, name='add_newrental'),
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
+    path('Customers', app.views.Customers, name='Customers'),
+    path('Customers/edit/<str:id>', app.views.edit_Customers, name='edit_Customers')
     path('Listings', app.views.Listings, name='Listings'),
     path('Listings/view/<str:id>', app.views.view_Listings, name='view_Listings'), #the html files button href will refer to path(this,X,X)
     path('Listings/edit/<str:id>', app.views.edit_Listings, name='edit_Listings'),
