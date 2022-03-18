@@ -1,1 +1,40 @@
+{% load static %}
+<html>
+<body>
+    <h2>Unavailability in the CarShare admin page</h2>
+    <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+    <a href="add">New Unavailability (but might need to create new function add_newunavailability)</a>
+    <br>
+    <br>
 
+    <br/><br/>
+    <br>
+    <br>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Car VIN</th>
+            <th>Owner</th>
+            <th>Unavailable dates</th>
+            
+        </thead>
+        {% for cust in records %}
+        <tr>
+            <td> {{ cust.0 }} </td>
+            <td> {{ cust.1 }} </td>
+            <td> {{ cust.2 }} </td>
+            <td>
+                <a href="Unavailable/view/{{cust.6}}"><button>View Unavailable</button></a> | 
+                <a href="Unavailable/edit/{{cust.6}}"><button>Edit Unavailable</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{cust.1}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{cust.1}}?');" type="submit" name="action" value="delete">Delete</button> 
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+     
+</body>
+</html>
