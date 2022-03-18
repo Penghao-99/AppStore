@@ -138,7 +138,7 @@ def edit_Listings(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE customers SET car_vin = %s, carmake = %s, model = %s, year = %s, mileage = %s, rate = %s, owner = %s WHERE owner = %s"
+            cursor.execute("UPDATE listings SET car_vin = %s, carmake = %s, model = %s, year = %s, mileage = %s, rate = %s, owner = %s WHERE owner = %s"
                     , [request.POST['car_vin'], request.POST['carmake'], request.POST['model'],
                         request.POST['year'] , request.POST['mileage'], request.POST['rate'], request.POST['owner'], id ])
             status = 'Listing edited successfully!'
@@ -152,9 +152,57 @@ def edit_Listings(request, id):
     return render(request, "app/edit_Listings.html", context)
 
 def edit_Unavailable(request, id):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+
+    # fetch the object related to passed id
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM unavailable WHERE car_vin = %s", [id])
+        obj = cursor.fetchone()
+
+    status = ''
+    # save the data from the form
+
+    if request.POST:
+        ##TODO: date validation
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE unavailable SET car_vin = %s, owner = %s, unavailable = %s WHERE car_vin = %s"
+                    , [request.POST['car_vin'], request.POST['owner'], request.POST['unavailable'], id ])
+            status = 'Unavailable edited successfully!'
+            cursor.execute("SELECT * FROM unavailable WHERE car_vin = %s", [id])
+            obj = cursor.fetchone()
+
+
+    context["obj"] = obj
+    context["status"] = status
     return render(request, "app/edit_Unavailable.html", context) ########################### TO-DO
 
 def edit_Rentals(request, id):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+
+    # fetch the object related to passed id
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [id])
+        obj = cursor.fetchone()
+
+    status = ''
+    # save the data from the form
+
+    if request.POST:
+        ##TODO: date validation
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE rentals SET owner = %s, renter = %s, car_vin = %s, pick_up = %s, drop_off = %s, rental_fee = %s WHERE car_vin = %s"
+                    , [request.POST['car_vin'], request.POST['owner'], request.POST['unavailable'], id ])
+            status = 'Rental edited successfully!'
+            cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [id])
+            obj = cursor.fetchone()
+
+
+    context["obj"] = obj
+    context["status"] = status
     return render(request, "app/edit_Rentals.html", context) ############################ TO-DO
 
 def Listings(request):
