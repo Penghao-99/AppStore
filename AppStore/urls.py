@@ -21,7 +21,7 @@ import app.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app.views.Customers, name='Customers'),
+    path('tttest', app.views.Customers, name='Customers'),
     path('add_newcustomer', app.views.add_newcustomer, name='add_newcustomer'),
     path('add_newlisting', app.views.add_newlisting, name='add_newlisting'),
     path('add_newunavailable', app.views.add_newunavailable, name='add_newunavailable'),
