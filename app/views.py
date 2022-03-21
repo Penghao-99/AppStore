@@ -174,8 +174,12 @@ def add_newrental(request):
     if request.POST:
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
-
-            cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [request.POST['car_vin']])
+            cursor.execute("SELECT * FROM rentals WHERE car_vin = %s, owner = %s, renter = %s, pick_up = %s, drop_off = %s", [request.POST['car_vin'],
+                                                                                                                             request.POST['owner'],
+                                                                                                                             request.POST['renter'],
+                                                                                                                             request.POST['pick_up'],
+                                                                                                                             request.POST['drop_off']])
+         #   cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [request.POST['car_vin']])
             customer = cursor.fetchone()
             ## No customer with same id
             if customer == None:
@@ -185,8 +189,8 @@ def add_newrental(request):
                           request.POST['pick_up'], request.POST['drop_off'], request.POST['rental_fee']])
                 return redirect('Rental')    #was return redirect('index')
             else:
-                status = 'Rental data of owner %s and renter %s and car VIN %s already exists' % (request.POST['owner'],request.POST['renter'],
-                                                                                                 request.POST['car_vin'])
+                status = 'Rental data of owner %s and renter %s and car VIN %s and pick-up date %s already exists' % (request.POST['owner'],request.POST['renter'],
+                                                                                                 request.POST['car_vin'], request.POST['pick_up'])
 
 
     context['status'] = status
