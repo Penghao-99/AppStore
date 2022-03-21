@@ -174,7 +174,7 @@ def add_newrental(request):
     if request.POST:
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM rentals WHERE car_vin = %s, pick_up = %s", (request.POST['car_vin'], request.POST['pick_up']))
+            cursor.execute("SELECT * FROM rentals WHERE car_vin = %s AND pick_up = %s", [request.POST['car_vin'], request.POST['pick_up']])
          #   cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [request.POST['car_vin']])
             customer = cursor.fetchone()
             ## No customer with same id
