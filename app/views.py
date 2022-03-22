@@ -175,8 +175,11 @@ def add_newrental(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
             try:
-                cursor.execute("INSERT INTO rentals VALUES(%s,%s)", [request.POST.get('car_vin'), request.POST.get('pick_up')])
-         #   cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [request.POST['car_vin']])
+          #      cursor.execute("INSERT INTO rentals VALUES(%s,%s)", [request.POST.get('car_vin'), request.POST.get('pick_up')])
+                cursor.execute("INSERT INTO rentals VALUES (%s, %s, %s, %s, %s, %s )"
+                        , [request.POST.get('owner'), request.POST.get('renter'), request.POST.get('car_vin'),
+                          request.POST.get('pick_up'), request.POST.get('drop_off'), request.POST.get('rental_fee')])
+
             except Exception as e:
                 string = str(e)
                 message = ""
