@@ -174,18 +174,31 @@ def add_newrental(request):
     if request.POST:
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM rentals WHERE car_vin = %s AND pick_up = %s", [request.POST.get('car_vin'), request.POST.get('pick_up')])
+            try:
+                cursor.execute("INSERT INTO rentals VALUES(%s,%s)", [request.POST.get('car_vin'), request.POST.get('pick_up')])
          #   cursor.execute("SELECT * FROM rentals WHERE car_vin = %s", [request.POST['car_vin']])
-            customer = cursor.fetchone()
+            except Exception as e:
+                string = str(e)
+                message = ""
+                if 'duplicate key value violates unique constraint "users_pkey"' in string:  
+                    message = 'The email has already been used by another user!'
+                elif 'new row for relation "users" violates check constraint "users_email_address_check"' in string:
+                    message = 'Please enter a valid email address!'
+                elif 'new row for relation "users" violates check constraint "users_mobile_number_check"' in string:
+                    message = 'Please enter a valid Singapore number!'
+                messages.error(request, message)
+                return render(request, "app/add_Rental.html")
+            
+         #   customer = cursor.fetchone()
             ## No customer with same id
-            if customer == None:
+         #   if customer == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO rentals VALUES (%s, %s, %s, %s, %s, %s )"
-                        , [request.POST.get('owner'), request.POST['renter'], request.POST['car_vin'],
-                          request.POST['pick_up'], request.POST['drop_off'], request.POST['rental_fee']])
-                return redirect('Rentals')    #was return redirect('index')
-            else:
-                status = 'Rental data of car VIN %s and pick-up date %s already exists' % (request.POST['car_vin'], request.POST['pick_up'])
+         #       cursor.execute("INSERT INTO rentals VALUES (%s, %s, %s, %s, %s, %s )"
+         #               , [request.POST.get('owner'), request.POST['renter'], request.POST['car_vin'],
+         #                 request.POST['pick_up'], request.POST['drop_off'], request.POST['rental_fee']])
+          #      return redirect('Rentals')    #was return redirect('index')
+         #   else:
+          #      status = 'Rental data of car VIN %s and pick-up date %s already exists' % (request.POST['car_vin'], request.POST['pick_up'])
 
 
     context['status'] = status
