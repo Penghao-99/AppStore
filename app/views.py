@@ -192,6 +192,7 @@ def add_newrental(request):
                 messages.error(request, message)
                 return render(request, "app/add_Rental.html")
             
+        messages.success(request, 'Rental has been successfully added!')
          #   customer = cursor.fetchone()
             ## No customer with same id
          #   if customer == None:
