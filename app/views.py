@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db import connection
+from django.contrib.auth.models import User
 
 # Create your views here.
 def Customers(request):
@@ -179,7 +180,7 @@ def add_newrental(request):
                 cursor.execute("INSERT INTO rentals VALUES (%s, %s, %s, %s, %s, %s )"
                         , [request.POST.get('owner'), request.POST.get('renter'), request.POST.get('car_vin'),
                           request.POST.get('pick_up'), request.POST.get('drop_off'), request.POST.get('rental_fee')])
-
+                
             except Exception as e:
                 string = str(e)
                 message = ""
@@ -190,7 +191,9 @@ def add_newrental(request):
                 elif 'new row for relation "users" violates check constraint "users_mobile_number_check"' in string:
                     message = 'Please enter a valid Singapore number!'
                 messages.error(request, message)
-                return render(request, "app/add_Rental.html")
+                return render(request, "add_Rental.html")
+            user = User.objects.create_user(email, password = password)
+            user.save()
             
         messages.success(request, 'Rental has been successfully added!')
          #   customer = cursor.fetchone()
