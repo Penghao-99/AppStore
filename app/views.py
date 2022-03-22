@@ -183,7 +183,7 @@ def add_newrental(request):
                 cursor.execute("INSERT INTO rentals VALUES (%s, %s, %s, %s, %s, %s )"
                         , [request.POST.get('owner'), request.POST['renter'], request.POST['car_vin'],
                           request.POST['pick_up'], request.POST['drop_off'], request.POST['rental_fee']])
-                return redirect('Rental')    #was return redirect('index')
+                return redirect('Rentals')    #was return redirect('index')
             else:
                 status = 'Rental data of car VIN %s and pick-up date %s already exists' % (request.POST['car_vin'], request.POST['pick_up'])
 
