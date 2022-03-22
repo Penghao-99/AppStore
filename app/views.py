@@ -192,9 +192,6 @@ def add_newrental(request):
                     message = 'Please enter a valid Singapore number!'
                 messages.error(request, message)
                 return render(request, "add_Rental.html")
-            user = User.objects.create_user(request.POST.get('owner'), request.POST.get('renter'), request.POST.get('car_vin'),
-                          request.POST.get('pick_up'), request.POST.get('drop_off'), request.POST.get('rental_fee'))
-            user.save()
             
         messages.success(request, 'Rental has been successfully added!')
          #   customer = cursor.fetchone()
