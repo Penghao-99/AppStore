@@ -180,7 +180,7 @@ def add_newrental(request):
             ## No customer with same id
             if customer == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO car_vin VALUES (%s, %s, %s, %s, %s, %s )"
+                cursor.execute("INSERT INTO rentals VALUES (%s, %s, %s, %s, %s, %s )"
                         , [request.POST['owner'], request.POST['renter'], request.POST['car_vin'],
                           request.POST['pick_up'], request.POST['drop_off'], request.POST['rental_fee']])
                 return redirect('Rental')    #was return redirect('index')
